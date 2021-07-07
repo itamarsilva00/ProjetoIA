@@ -3,11 +3,8 @@ package main;
 import main.aima.Assignment;
 import main.aima.Constraint;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ChoqueHorarioConstraint implements Constraint<Ocupacao, Horario> {
 

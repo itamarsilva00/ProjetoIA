@@ -17,7 +17,6 @@ public class ProjetoFinal extends CSP {
         stepCounter.reset();
         solution = solver.solve(csp);
 
-        System.out.println("solução: " + solution);
         solution.ifPresent(System.out::println);
         System.out.println(stepCounter.getResults() + "\n");
     }
