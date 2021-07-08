@@ -5,16 +5,16 @@ import main.aima.Variable;
 public class Ocupacao extends Variable {
 
     private String nome;
-    private int duracao;
+    private int grupo;
 
     public Ocupacao(String name) {
         super(name);
     }
 
-    public Ocupacao(String nome, int duracao) {
-        super(nome + " " + duracao);
+    public Ocupacao(String nome, int grupo) {
+        super(nome + " " + grupo);
         this.nome = nome;
-        this.duracao = duracao;
+        this.grupo = grupo;
     }
 
     public void setNome(String nome) {
@@ -25,13 +25,13 @@ public class Ocupacao extends Variable {
         return nome;
     }
 
-    public int getDuracao() {
-        return duracao;
+    public int getGrupo() {
+        return grupo;
     }
 
-    public void setDuracao(int duracao) {
-        if (duracao <= 0) throw new RuntimeException("Duracao deve ser maior que 0");
-        this.duracao = duracao;
+    public void setGrupo(int grupo) {
+        if (grupo <= 0) throw new RuntimeException("Duracao deve ser maior que 0");
+        this.grupo = grupo;
     }
 
     @Override

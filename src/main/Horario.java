@@ -1,18 +1,31 @@
 package main;
 
+import java.util.Objects;
+
 public class Horario {
 
     private String titulo;
     private DiaSemana diaSemana;
+    private long ordem;
 
-    public Horario(String titulo, DiaSemana diaSemana) {
+    public long getOrdem() {
+        return ordem;
+    }
+
+    public Horario(String titulo, DiaSemana diaSemana, long ordem) {
         this.titulo = titulo;
         this.diaSemana = diaSemana;
+        this.ordem = ordem;
     }
 
     @Override
     public String toString() {
         return titulo + " " + diaSemana;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, diaSemana);
     }
 
     public String getTitulo() {
