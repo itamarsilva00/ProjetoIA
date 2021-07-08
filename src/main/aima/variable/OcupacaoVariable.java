@@ -1,17 +1,17 @@
-package main;
+package main.aima.variable;
 
-import main.aima.Variable;
+import main.aima.core.Variable;
 
-public class Ocupacao extends Variable {
+public class OcupacaoVariable extends Variable {
 
     private String nome;
     private int grupo;
 
-    public Ocupacao(String name) {
+    public OcupacaoVariable(String name) {
         super(name);
     }
 
-    public Ocupacao(String nome, int grupo) {
+    public OcupacaoVariable(String nome, int grupo) {
         super(nome + " " + grupo);
         this.nome = nome;
         this.grupo = grupo;

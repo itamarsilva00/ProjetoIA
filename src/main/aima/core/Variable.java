@@ -1,4 +1,4 @@
-package main.aima;
+package main.aima.core;
 /**
  * A variable is a distinguishable object with a name.
  *

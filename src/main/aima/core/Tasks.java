@@ -1,4 +1,4 @@
-package main.aima;
+package main.aima.core;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

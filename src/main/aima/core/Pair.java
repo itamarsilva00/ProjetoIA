@@ -1,4 +1,4 @@
-package main.aima;
+package main.aima.core;
 
 /**
  * @author Ravi Mohan

@@ -1,6 +1,6 @@
 package main.aima.constraint;
 
-import main.aima.*;
+import main.aima.core.*;
 
 import java.util.*;
 

@@ -1,16 +1,19 @@
 package main;
 
-import main.aima.*;
+import main.aima.core.*;
+import main.aima.csp.AgendaCSP;
+import main.aima.domain.HorarioDomain;
+import main.aima.variable.OcupacaoVariable;
 
 import java.util.Optional;
 
 public class ProjetoFinal extends CSP {
 
     public static void main(String[] args) {
-        CSP<Ocupacao, Horario> csp = new AgendaCSP();
-        CspListener.StepCounter<Ocupacao, Horario> stepCounter = new CspListener.StepCounter<>();
-        CspSolver<Ocupacao, Horario> solver;
-        Optional<Assignment<Ocupacao, Horario>> solution;
+        CSP<OcupacaoVariable, HorarioDomain> csp = new AgendaCSP();
+        CspListener.StepCounter<OcupacaoVariable, HorarioDomain> stepCounter = new CspListener.StepCounter<>();
+        CspSolver<OcupacaoVariable, HorarioDomain> solver;
+        Optional<Assignment<OcupacaoVariable, HorarioDomain>> solution;
 
         solver = new FlexibleBacktrackingSolver<>();
         solver.addCspListener(stepCounter);

@@ -1,4 +1,4 @@
-package main.aima;
+package main.aima.core;
 
 /**
  * Implements a thread with an additional flag indicating cancellation.

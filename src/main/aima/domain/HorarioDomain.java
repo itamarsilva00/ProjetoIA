@@ -1,8 +1,8 @@
-package main;
+package main.aima.domain;
 
 import java.util.Objects;
 
-public class Horario {
+public class HorarioDomain {
 
     private String titulo;
     private DiaSemana diaSemana;
@@ -12,7 +12,7 @@ public class Horario {
         return ordem;
     }
 
-    public Horario(String titulo, DiaSemana diaSemana, long ordem) {
+    public HorarioDomain(String titulo, DiaSemana diaSemana, long ordem) {
         this.titulo = titulo;
         this.diaSemana = diaSemana;
         this.ordem = ordem;
