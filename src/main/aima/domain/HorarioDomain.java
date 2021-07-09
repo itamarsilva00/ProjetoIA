@@ -4,44 +4,35 @@ import java.util.Objects;
 
 public class HorarioDomain {
 
-    private String titulo;
-    private DiaSemana diaSemana;
-    private long ordem;
+    private HoraDiaSemana horaDiaSemana;
 
-    public long getOrdem() {
-        return ordem;
-    }
-
-    public HorarioDomain(String titulo, DiaSemana diaSemana, long ordem) {
-        this.titulo = titulo;
-        this.diaSemana = diaSemana;
-        this.ordem = ordem;
+    public HorarioDomain(String titulo, DiaSemana diaSemana) {
+        this.horaDiaSemana = new HoraDiaSemana(titulo, diaSemana);
     }
 
     @Override
     public String toString() {
-        return titulo + " " + diaSemana;
+        return this.horaDiaSemana.getHora() + " " + this.horaDiaSemana.getDiaSemana();
+    }
+
+    public HoraDiaSemana getHoraDiaSemana() {
+        return horaDiaSemana;
+    }
+
+    public void setHoraDiaSemana(HoraDiaSemana horaDiaSemana) {
+        this.horaDiaSemana = horaDiaSemana;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HorarioDomain that = (HorarioDomain) o;
+        return Objects.equals(horaDiaSemana, that.horaDiaSemana);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(titulo, diaSemana);
+        return Objects.hash(horaDiaSemana);
     }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public DiaSemana getDiaSemana() {
-        return diaSemana;
-    }
-
-    public void setDiaSemana(DiaSemana diaSemana) {
-        this.diaSemana = diaSemana;
-    }
-
 }

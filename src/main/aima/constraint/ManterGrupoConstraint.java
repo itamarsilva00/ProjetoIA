@@ -38,7 +38,7 @@ public class ManterGrupoConstraint implements Constraint<OcupacaoVariable, Horar
         return mesmoGrupoList.stream()
                 .map(assignment::getValue)
                 .filter(Objects::nonNull)
-                .allMatch(value-> value.getDiaSemana() == atual.getDiaSemana());
+                .allMatch(value-> value.getHoraDiaSemana().getDiaSemana() == atual.getHoraDiaSemana().getDiaSemana());
 
     }
 }

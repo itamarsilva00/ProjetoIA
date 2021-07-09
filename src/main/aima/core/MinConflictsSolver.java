@@ -1,4 +1,4 @@
-package main.aima.constraint;
+package main.aima.core;
 
 import main.aima.core.*;
 

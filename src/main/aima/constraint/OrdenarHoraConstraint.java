@@ -10,8 +10,8 @@ import java.util.List;
 
 public class OrdenarHoraConstraint implements Constraint<OcupacaoVariable, HorarioDomain> {
 
-    private OcupacaoVariable ocupacaoVariable;
-    private List<OcupacaoVariable> outrasOcupacoes;
+    private final OcupacaoVariable ocupacaoVariable;
+    private final List<OcupacaoVariable> outrasOcupacoes;
 
     public OrdenarHoraConstraint(OcupacaoVariable ocupacaoVariable, List<OcupacaoVariable> outrasOcupacoes) {
         this.ocupacaoVariable = ocupacaoVariable;
@@ -27,6 +27,8 @@ public class OrdenarHoraConstraint implements Constraint<OcupacaoVariable, Horar
     public boolean isSatisfiedWith(Assignment<OcupacaoVariable, HorarioDomain> assignment) {
         HorarioDomain atual = assignment.getValue(ocupacaoVariable);
 
-        return outrasOcupacoes.stream().noneMatch(h -> assignment.getValue(h) != null && assignment.getValue(h).getOrdem() > atual.getOrdem());
+        return outrasOcupacoes.stream().noneMatch(h ->
+                assignment.getValue(h) != null &&
+                        assignment.getValue(h).getHoraDiaSemana().getOrdem() > atual.getHoraDiaSemana().getOrdem());
     }
 }

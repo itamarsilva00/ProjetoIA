@@ -5,6 +5,7 @@ import main.aima.csp.AgendaCSP;
 import main.aima.domain.HorarioDomain;
 import main.aima.variable.OcupacaoVariable;
 
+import java.util.Comparator;
 import java.util.Optional;
 
 public class ProjetoFinal extends CSP {
@@ -19,7 +20,15 @@ public class ProjetoFinal extends CSP {
         solver.addCspListener(stepCounter);
         stepCounter.reset();
         solution = solver.solve(csp);
-        solution.ifPresent(System.out::println);
+
+        solution.get().getVariables()
+                .stream().sorted(Comparator.comparingLong(c -> c.getHoraDiaSemana().getOrdem()))
+                .forEach(consumer -> {
+            System.out.println(consumer.getHoraDiaSemana().getDiaSemana().name() + " | " + consumer.getHoraDiaSemana().getHora() + ": " + consumer.getNome());
+        });
+
+//        solution.ifPresent(System.out::println);
         System.out.println(stepCounter.getResults() + "\n");
+
     }
 }
