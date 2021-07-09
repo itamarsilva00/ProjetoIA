@@ -19,7 +19,6 @@ public class HorarioDomain {
         return horaDiaSemana;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

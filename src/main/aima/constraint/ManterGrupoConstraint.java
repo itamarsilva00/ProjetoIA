@@ -29,7 +29,7 @@ public class ManterGrupoConstraint implements Constraint<OcupacaoVariable, Horar
     public boolean isSatisfiedWith(Assignment<OcupacaoVariable, HorarioDomain> assignment) {
         HorarioDomain atual = assignment.getValue(ocupacaoVariable);
 
-        int grupo = ocupacaoVariable.getGrupo();
+        long grupo = ocupacaoVariable.getGrupo();
 
         List<OcupacaoVariable> mesmoGrupoList = outrasOcupacoes.stream()
                 .filter(it -> it.getGrupo() == grupo)
