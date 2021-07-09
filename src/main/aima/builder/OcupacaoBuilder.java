@@ -11,12 +11,12 @@ public class OcupacaoBuilder {
     private static List<OcupacaoVariable> buildAlmoco() {
         List<OcupacaoVariable> aux = new ArrayList<>();
 
-//        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.SEGUNDA, 2001));
-//        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.TERCA, 2002));
-//        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.QUARTA, 2003));
-//        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.QUINTA, 2004));
-//        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.SEXTA, 2005));
-//        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.SABADO, 2006));
+        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.SEGUNDA, 2001));
+        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.TERCA, 2002));
+        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.QUARTA, 2003));
+        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.QUINTA, 2004));
+        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.SEXTA, 2005));
+        aux.add(new OcupacaoVariable("Almoço", "12:00", DiaSemana.SABADO, 2006));
         return aux;
     }
 

@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class HoraDiaSemana {
 
-    private String hora;
-    private DiaSemana diaSemana;
+    private final String hora;
+    private final DiaSemana diaSemana;
 
     public HoraDiaSemana(String hora, DiaSemana diaSemana) {
         this.hora = hora;
@@ -49,7 +49,6 @@ public class HoraDiaSemana {
     public DiaSemana getDiaSemana() {
         return diaSemana;
     }
-
 
     @Override
     public boolean equals(Object o) {

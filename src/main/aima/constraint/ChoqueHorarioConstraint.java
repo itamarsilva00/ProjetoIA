@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ChoqueHorarioConstraint implements Constraint<OcupacaoVariable, HorarioDomain> {
 
-    private OcupacaoVariable ocupacaoVariable;
-    private List<OcupacaoVariable> outrasOcupacoes;
+    final private OcupacaoVariable ocupacaoVariable;
+    final private List<OcupacaoVariable> outrasOcupacoes;
 
 
     public ChoqueHorarioConstraint(OcupacaoVariable ocupacaoVariable, List<OcupacaoVariable> outrasOcupacoes) {

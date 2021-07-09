@@ -26,21 +26,12 @@ public class OcupacaoVariable extends Variable {
         this.grupo = grupo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public int getGrupo() {
         return grupo;
-    }
-
-    public void setGrupo(int grupo) {
-        if (grupo <= 0) throw new RuntimeException("Duracao deve ser maior que 0");
-        this.grupo = grupo;
     }
 
     public HoraDiaSemana getHoraDiaSemana() {

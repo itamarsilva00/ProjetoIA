@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class HorarioDomain {
 
-    private HoraDiaSemana horaDiaSemana;
+    private final HoraDiaSemana horaDiaSemana;
 
     public HorarioDomain(String titulo, DiaSemana diaSemana) {
         this.horaDiaSemana = new HoraDiaSemana(titulo, diaSemana);
@@ -19,9 +19,6 @@ public class HorarioDomain {
         return horaDiaSemana;
     }
 
-    public void setHoraDiaSemana(HoraDiaSemana horaDiaSemana) {
-        this.horaDiaSemana = horaDiaSemana;
-    }
 
     @Override
     public boolean equals(Object o) {
