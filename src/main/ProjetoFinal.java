@@ -28,7 +28,6 @@ public class ProjetoFinal extends CSP {
             System.out.println("\u001B[1m" + "Solução não encontrada" + "\u001B[0m");
         }
 
-//        solution.ifPresent(System.out::println);
         System.out.println(stepCounter.getResults() + "\n");
 
     }

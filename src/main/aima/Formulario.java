@@ -21,25 +21,27 @@ public class Formulario {
             var cenario = scanner.nextInt();
             if (cenario < 0 || cenario > 4) return;
 
-            var horarios = obterHorarios();
+            var horarios = new Pair<>(8, 23);
             if (cenario == 1) {
                 carregaCenario1(horarios.getFirst(), horarios.getSecond());
             }
         }
     }
 
-    public static List<OcupacaoVariable> lerBlocos(List<OcupacaoVariable> variableList) {
+    public static void lerBlocos(List<OcupacaoVariable> variableList) {
         var disciplinas = variableList.stream()
                 .filter(it -> it.getOcupacao() == TipoOcupacao.AULA)
                 .map(OcupacaoVariable::getNome).collect(Collectors.toSet());
 
+        System.out.println("\u001B[1m" + "Instruções: 1 - 30min, 2 - 1h, 3 - 1h30" + "\u001B[0m");
+
         disciplinas.forEach(consumer -> {
-            System.out.println("Digite os blocos de estudo (em horas) para a disciplina " + consumer);
+            System.out.println("Digite a quantidade de blocos de meia hora para a disciplina " + consumer + ": ");
             scanner = new Scanner(System.in);
             var blocos = scanner.nextLine();
 
             Arrays.stream(blocos.split(" ")).map(Integer::parseInt).forEach(a -> {
-                var grupo = new Random().nextLong();
+                var grupo = Math.abs(new Random().nextLong());
 
                 for (int i = 0; i < a; i++) {
                     String nome = "Estudar disciplina " + consumer;
@@ -48,30 +50,13 @@ public class Formulario {
                 }
             });
         });
-        return variableList;
     }
 
     public static void carregaCenario1(int inicio, int fim) {
         List<OcupacaoVariable> cenario = Cenario1Builder.buildCenario();
         lerBlocos(cenario);
 
-        cenario.forEach(System.out::println);
-
         AgendaCSP.iniciarCsp(cenario, inicio, fim);
     }
 
-    public static Pair<Integer, Integer> obterHorarios() {
-        scanner = new Scanner(System.in);
-        System.out.println("Digite o horário de início");
-        var inicio = scanner.nextInt();
-
-        System.out.println("Digite o horário de término");
-        var termino = scanner.nextInt();
-
-        if (inicio < 1 || termino > 23 || termino <= inicio) {
-            System.out.println("Horario inválido, tente novamente.");
-            obterHorarios();
-        }
-        return new Pair(inicio, termino);
-    }
 }

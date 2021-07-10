@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class ManterGrupoConstraint implements Constraint<OcupacaoVariable, HorarioDomain> {
 
-    private OcupacaoVariable ocupacaoVariable;
-    private List<OcupacaoVariable> outrasOcupacoes;
+    private final OcupacaoVariable ocupacaoVariable;
+    private final List<OcupacaoVariable> outrasOcupacoes;
 
     public ManterGrupoConstraint(OcupacaoVariable ocupacaoVariable, List<OcupacaoVariable> outrasOcupacoes) {
         this.ocupacaoVariable = ocupacaoVariable;
@@ -28,17 +28,20 @@ public class ManterGrupoConstraint implements Constraint<OcupacaoVariable, Horar
     @Override
     public boolean isSatisfiedWith(Assignment<OcupacaoVariable, HorarioDomain> assignment) {
         HorarioDomain atual = assignment.getValue(ocupacaoVariable);
-
         long grupo = ocupacaoVariable.getGrupo();
 
         List<OcupacaoVariable> mesmoGrupoList = outrasOcupacoes.stream()
                 .filter(it -> it.getGrupo() == grupo)
                 .collect(Collectors.toList());
 
+        if (mesmoGrupoList.isEmpty()) return true;
+        if (mesmoGrupoList.stream().map(assignment::getValue).noneMatch(Objects::nonNull)) return true;
+
         return mesmoGrupoList.stream()
                 .map(assignment::getValue)
                 .filter(Objects::nonNull)
-                .allMatch(value-> value.getHoraDiaSemana().getDiaSemana() == atual.getHoraDiaSemana().getDiaSemana());
-
+                .filter(it -> it.getHoraDiaSemana().getDiaSemana() == atual.getHoraDiaSemana().getDiaSemana())
+                .anyMatch(atual::isVizinho);
     }
 }
+

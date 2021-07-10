@@ -27,6 +27,6 @@ public class HorarioDefinidoConstraint implements Constraint<OcupacaoVariable, H
         HorarioDomain atual = assignment.getValue(ocupacaoVariable);
         HoraDiaSemana horaDiaSemana = ocupacaoVariable.getHoraDiaSemana();
 
-        return horaDiaSemana == null || horaDiaSemana.getOrdem() == atual.getHoraDiaSemana().getOrdem();
+        return atual.getHoraDiaSemana() != null && (horaDiaSemana == null || horaDiaSemana.getOrdem() == atual.getHoraDiaSemana().getOrdem());
     }
 }

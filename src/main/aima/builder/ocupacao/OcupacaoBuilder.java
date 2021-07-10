@@ -12,7 +12,9 @@ public class OcupacaoBuilder {
     static List<OcupacaoVariable> buildOcupacao(String nome, TipoOcupacao tipoOcupacao, int inicio) {
         List<OcupacaoVariable> aux = new ArrayList<>();
 
-        for (DiaSemana consumer : DiaSemana.values()) {
+        DiaSemana[] values = DiaSemana.values();
+        for (int i = 0, valuesLength = values.length - 1; i < valuesLength; i++) {
+            DiaSemana consumer = values[i];
             aux.add(new OcupacaoVariable(nome, "8:00", consumer, tipoOcupacao, inicio++));
             aux.add(new OcupacaoVariable(nome, "8:30", consumer, tipoOcupacao, inicio++));
             aux.add(new OcupacaoVariable(nome, "9:00", consumer, tipoOcupacao, inicio++));

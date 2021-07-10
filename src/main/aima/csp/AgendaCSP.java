@@ -46,7 +46,7 @@ public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
             aux.remove(ocupacao);
             addConstraint(new ChoqueHorarioConstraint(ocupacao, aux));
             addConstraint(new ManterGrupoConstraint(ocupacao, aux));
-//            addConstraint(new HorarioDefinidoConstraint(ocupacao));
+            addConstraint(new HorarioDefinidoConstraint(ocupacao));
         });
     }
 
@@ -62,7 +62,7 @@ public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
         solution = solver.solve(csp);
 
         if (solution.isPresent()) {
-            imprimirCalendario(solution.get().getVariables());
+            imprimirCalendario(solution.get());
         } else {
             System.out.println("\u001B[1m" + "Solução não encontrada" + "\u001B[0m");
         }
@@ -75,9 +75,20 @@ public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
             System.out.println("\n\u001B[1m" + dia + "\u001B[0m");
 
             ocupacaoList.stream()
-                    .filter(it -> it.getHoraDiaSemana().getDiaSemana() == dia)
+                    .filter(it ->it.getHoraDiaSemana() != null && it.getHoraDiaSemana().getDiaSemana() == dia)
                     .sorted(Comparator.comparingLong(c -> c.getHoraDiaSemana().getOrdem()))
                     .forEach(consumer -> System.out.println(consumer.getHoraDiaSemana().getHora() + " | " + consumer.getNomeCor() +" |"));
+        });
+    }
+
+    public static void imprimirCalendario(Assignment<OcupacaoVariable, HorarioDomain> assignment) {
+        Arrays.stream(DiaSemana.values()).forEach(dia-> {
+            System.out.println("\n\u001B[1m" + dia + "\u001B[0m");
+
+            assignment.getVariables().stream()
+                    .filter(it -> assignment.getValue(it).getHoraDiaSemana().getDiaSemana() == dia)
+                    .sorted(Comparator.comparingLong(it -> assignment.getValue(it).getHoraDiaSemana().getOrdem()))
+                    .forEach(it -> System.out.println(assignment.getValue(it).getHoraDiaSemana().getHora() + " | " + it.getNomeCor() +" |"));
         });
     }
 }

@@ -11,7 +11,7 @@ public class OcupacaoVariable extends Variable {
 
     private final String nome;
     private final long grupo;
-    private final HoraDiaSemana horaDiaSemana;
+    private HoraDiaSemana horaDiaSemana;
     private TipoOcupacao ocupacao;
 
     public OcupacaoVariable(String nome, int grupo) {
@@ -19,17 +19,18 @@ public class OcupacaoVariable extends Variable {
         this.nome = nome;
         this.grupo = grupo;
         this.horaDiaSemana = null;
+        this.ocupacao = TipoOcupacao.OUTROS;
     }
 
     public OcupacaoVariable(String nome, TipoOcupacao tipoOcupacao, long grupo) {
         super(nome + UUID.randomUUID());
         this.ocupacao = tipoOcupacao;
-        this.nome = tipoOcupacao.cor + nome + "\u001B[0m";
+        this.nome = nome;
         this.grupo = grupo;
         this.horaDiaSemana = null;
     }
 
-    public OcupacaoVariable(String nome, String hora, DiaSemana diaSemana,TipoOcupacao tipoOcupacao, int grupo) {
+    public OcupacaoVariable(String nome, String hora, DiaSemana diaSemana, TipoOcupacao tipoOcupacao, int grupo) {
         super(nome + UUID.randomUUID());
         this.horaDiaSemana = new HoraDiaSemana(hora, diaSemana);
         this.nome = nome;
@@ -53,6 +54,10 @@ public class OcupacaoVariable extends Variable {
         return horaDiaSemana;
     }
 
+    public void setHoraDiaSemana(HoraDiaSemana horaDiaSemana) {
+        this.horaDiaSemana = horaDiaSemana;
+    }
+
     @Override
     public String toString() {
         return this.nome;
@@ -61,4 +66,5 @@ public class OcupacaoVariable extends Variable {
     public TipoOcupacao getOcupacao() {
         return ocupacao;
     }
+
 }

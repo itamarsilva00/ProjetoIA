@@ -46,6 +46,7 @@ public class HoraDiaSemana {
 
         return (long) Integer.parseInt(getHora().replace(":", "")) * aux;
     }
+
     public DiaSemana getDiaSemana() {
         return diaSemana;
     }
@@ -57,6 +58,7 @@ public class HoraDiaSemana {
         HoraDiaSemana that = (HoraDiaSemana) o;
         return Objects.equals(hora, that.hora) && diaSemana == that.diaSemana;
     }
+
 
     @Override
     public int hashCode() {
