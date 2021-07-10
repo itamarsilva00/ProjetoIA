@@ -9,7 +9,7 @@ import java.util.List;
 
 public class OcupacaoBuilder {
 
-    static List<OcupacaoVariable> buildOcupacao(String nome, TipoOcupacao tipoOcupacao, int inicio) {
+    public static List<OcupacaoVariable> buildOcupacao(String nome, TipoOcupacao tipoOcupacao, int inicio) {
         List<OcupacaoVariable> aux = new ArrayList<>();
 
         DiaSemana[] values = DiaSemana.values();

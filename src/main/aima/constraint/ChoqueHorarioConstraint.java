@@ -1,9 +1,9 @@
 package main.aima.constraint;
 
-import main.aima.domain.HorarioDomain;
-import main.aima.variable.OcupacaoVariable;
 import main.aima.core.Assignment;
 import main.aima.core.Constraint;
+import main.aima.domain.HorarioDomain;
+import main.aima.variable.OcupacaoVariable;
 
 import java.util.ArrayList;
 import java.util.List;

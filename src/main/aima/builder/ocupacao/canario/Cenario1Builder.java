@@ -1,5 +1,7 @@
-package main.aima.builder.ocupacao;
+package main.aima.builder.ocupacao.canario;
 
+import main.aima.builder.ocupacao.AlmocoBuilder;
+import main.aima.builder.ocupacao.OcupacaoBuilder;
 import main.aima.domain.DiaSemana;
 import main.aima.domain.TipoOcupacao;
 import main.aima.variable.OcupacaoVariable;
@@ -11,9 +13,11 @@ import static main.aima.domain.DiaSemana.SEGUNDA;
 import static main.aima.domain.DiaSemana.TERCA;
 import static main.aima.domain.TipoOcupacao.*;
 
-public class Cenario1Builder {
+public class Cenario1Builder extends CenarioBuilder {
 
-    public static List<OcupacaoVariable> buildCenario() {
+    @Override
+    public List<OcupacaoVariable> carregarOcupacoes() {
+
         List<OcupacaoVariable> aux = new ArrayList<>(AlmocoBuilder.buildAlmoco());
         aux.addAll(buildPibic());
 

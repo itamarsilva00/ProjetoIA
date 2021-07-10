@@ -1,7 +1,7 @@
 package main.aima.csp;
 
 import main.aima.builder.HorarioAlunoBuilder;
-import main.aima.builder.ocupacao.Cenario1Builder;
+import main.aima.builder.ocupacao.canario.Cenario1Builder;
 import main.aima.constraint.ChoqueHorarioConstraint;
 import main.aima.constraint.HorarioDefinidoConstraint;
 import main.aima.constraint.ManterGrupoConstraint;
@@ -13,25 +13,6 @@ import main.aima.variable.OcupacaoVariable;
 import java.util.*;
 
 public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
-
-    public AgendaCSP() {
-        List<OcupacaoVariable> ocupacaoVariableList = Cenario1Builder.buildCenario();
-
-        Domain<HorarioDomain> domain = new Domain<>(HorarioAlunoBuilder.build(8, 23));
-
-        ocupacaoVariableList.forEach(this::addVariable);
-
-        for (OcupacaoVariable var : getVariables())
-            setDomain(var, domain);
-
-        ocupacaoVariableList.forEach(ocupacao -> {
-            ArrayList<OcupacaoVariable> aux = new ArrayList<>(ocupacaoVariableList);
-            aux.remove(ocupacao);
-            addConstraint(new ChoqueHorarioConstraint(ocupacao, aux));
-            addConstraint(new ManterGrupoConstraint(ocupacao, aux));
-            addConstraint(new HorarioDefinidoConstraint(ocupacao));
-        });
-    }
 
     public AgendaCSP(List<OcupacaoVariable> variableList, int horaInicio, int horaFim) {
         Domain<HorarioDomain> domain = new Domain<>(HorarioAlunoBuilder.build(horaInicio, horaFim));
@@ -56,7 +37,7 @@ public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
         CspSolver<OcupacaoVariable, HorarioDomain> solver;
         Optional<Assignment<OcupacaoVariable, HorarioDomain>> solution;
 
-        solver = new FlexibleBacktrackingSolver<>();
+        solver = new TreeCspSolver<OcupacaoVariable, HorarioDomain>();
         solver.addCspListener(stepCounter);
         stepCounter.reset();
         solution = solver.solve(csp);

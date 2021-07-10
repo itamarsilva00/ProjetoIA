@@ -1,7 +1,6 @@
 package main.aima;
 
-import main.aima.builder.ocupacao.Cenario1Builder;
-import main.aima.core.Pair;
+import main.aima.builder.ocupacao.canario.CenarioBuilder;
 import main.aima.csp.AgendaCSP;
 import main.aima.domain.TipoOcupacao;
 import main.aima.variable.OcupacaoVariable;
@@ -16,15 +15,21 @@ public class Formulario {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        while (true) {
-            System.out.println("Qual o cenário deseja carregar (1, 2, 3)?");
-            var cenario = scanner.nextInt();
-            if (cenario < 0 || cenario > 4) return;
+        lerCenarios();
+    }
 
-            var horarios = new Pair<>(8, 23);
-            if (cenario == 1) {
-                carregaCenario1(horarios.getFirst(), horarios.getSecond());
+    public static void lerCenarios() {
+        while (true) {
+            System.out.println("Qual o cenário deseja carregar (1, 2, 3)? Ou digite 0 para sair.");
+            var cenario = scanner.nextInt();
+            if (cenario == 0) return;
+
+            if (cenario < 0 || cenario > 4) {
+                System.out.println("Cenário inválido, tente novamente.");
+                lerCenarios();
             }
+
+            carregarCenario(cenario, 8, 23);
         }
     }
 
@@ -52,8 +57,8 @@ public class Formulario {
         });
     }
 
-    public static void carregaCenario1(int inicio, int fim) {
-        List<OcupacaoVariable> cenario = Cenario1Builder.buildCenario();
+    public static void carregarCenario(int tipo, int inicio, int fim) {
+        List<OcupacaoVariable> cenario =  CenarioBuilder.build(tipo).carregarOcupacoes();
         lerBlocos(cenario);
 
         AgendaCSP.iniciarCsp(cenario, inicio, fim);

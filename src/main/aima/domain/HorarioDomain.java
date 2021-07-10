@@ -1,7 +1,5 @@
 package main.aima.domain;
 
-import main.aima.variable.OcupacaoVariable;
-
 import java.util.Objects;
 
 public class HorarioDomain {
