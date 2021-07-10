@@ -5,14 +5,13 @@ import main.aima.variable.OcupacaoVariable;
 import main.aima.core.Assignment;
 import main.aima.core.Constraint;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChoqueHorarioConstraint implements Constraint<OcupacaoVariable, HorarioDomain> {
 
     final private OcupacaoVariable ocupacaoVariable;
     final private List<OcupacaoVariable> outrasOcupacoes;
-
 
     public ChoqueHorarioConstraint(OcupacaoVariable ocupacaoVariable, List<OcupacaoVariable> outrasOcupacoes) {
         this.ocupacaoVariable = ocupacaoVariable;
@@ -21,7 +20,10 @@ public class ChoqueHorarioConstraint implements Constraint<OcupacaoVariable, Hor
 
     @Override
     public List<OcupacaoVariable> getScope() {
-        return Collections.singletonList(ocupacaoVariable);
+        var aux = new ArrayList<OcupacaoVariable>();
+        aux.add(ocupacaoVariable);
+        aux.add(ocupacaoVariable);
+        return aux;
     }
 
     @Override
