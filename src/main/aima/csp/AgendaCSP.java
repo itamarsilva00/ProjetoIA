@@ -18,7 +18,6 @@ public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
         Domain<HorarioDomain> domain = new Domain<>(HorarioAlunoBuilder.build(horaInicio, horaFim));
 
         variableList.forEach(this::addVariable);
-
         for (OcupacaoVariable var : getVariables())
             setDomain(var, domain);
 
@@ -37,7 +36,7 @@ public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
         CspSolver<OcupacaoVariable, HorarioDomain> solver;
         Optional<Assignment<OcupacaoVariable, HorarioDomain>> solution;
 
-        solver = new TreeCspSolver<OcupacaoVariable, HorarioDomain>();
+        solver = new FlexibleBacktrackingSolver<OcupacaoVariable, HorarioDomain>().set(CspHeuristics.mrvDeg());
         solver.addCspListener(stepCounter);
         stepCounter.reset();
         solution = solver.solve(csp);
@@ -49,17 +48,6 @@ public class AgendaCSP extends CSP<OcupacaoVariable, HorarioDomain> {
         }
 
         System.out.println(stepCounter.getResults() + "\n");
-    }
-
-    public static void imprimirCalendario(List<OcupacaoVariable> ocupacaoList) {
-        Arrays.stream(DiaSemana.values()).forEach(dia-> {
-            System.out.println("\n\u001B[1m" + dia + "\u001B[0m");
-
-            ocupacaoList.stream()
-                    .filter(it ->it.getHoraDiaSemana() != null && it.getHoraDiaSemana().getDiaSemana() == dia)
-                    .sorted(Comparator.comparingLong(c -> c.getHoraDiaSemana().getOrdem()))
-                    .forEach(consumer -> System.out.println(consumer.getHoraDiaSemana().getHora() + " | " + consumer.getNomeCor() +" |"));
-        });
     }
 
     public static void imprimirCalendario(Assignment<OcupacaoVariable, HorarioDomain> assignment) {

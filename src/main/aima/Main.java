@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static main.aima.domain.TipoOcupacao.ESTUDO;
 
-public class Formulario {
+public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -21,7 +21,7 @@ public class Formulario {
     public static void lerCenarios() {
         while (true) {
             System.out.println("Qual o cenário deseja carregar (1, 2, 3)? Ou digite 0 para sair.");
-            var cenario = scanner.nextInt();
+            var cenario = 1;//scanner.nextInt();
             if (cenario == 0) return;
 
             if (cenario < 0 || cenario > 4) {
@@ -30,6 +30,8 @@ public class Formulario {
             }
 
             carregarCenario(cenario, 8, 23);
+
+            return;
         }
     }
 
@@ -43,7 +45,7 @@ public class Formulario {
         disciplinas.forEach(consumer -> {
             System.out.println("Digite a quantidade de blocos de meia hora para a disciplina " + consumer + ": ");
             scanner = new Scanner(System.in);
-            var blocos = scanner.nextLine();
+            var blocos = "4 5 6";//scanner.nextLine();
 
             Arrays.stream(blocos.split(" ")).map(Integer::parseInt).forEach(a -> {
                 var grupo = Math.abs(new Random().nextLong());

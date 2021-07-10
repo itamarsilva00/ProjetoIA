@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class HorarioDomain {
 
-    private HoraDiaSemana horaDiaSemana;
+    private final HoraDiaSemana horaDiaSemana;
 
     public HorarioDomain(String titulo, DiaSemana diaSemana) {
         this.horaDiaSemana = new HoraDiaSemana(titulo, diaSemana);
@@ -15,13 +15,8 @@ public class HorarioDomain {
         return this.horaDiaSemana.getHora() + " " + this.horaDiaSemana.getDiaSemana();
     }
 
-
     public HoraDiaSemana getHoraDiaSemana() {
         return horaDiaSemana;
-    }
-
-    public void setHoraDiaSemana(HoraDiaSemana horaDiaSemana) {
-        this.horaDiaSemana = horaDiaSemana;
     }
 
     public boolean isVizinho(HorarioDomain horarioDomain) {

@@ -22,7 +22,6 @@ public class ChoqueHorarioConstraint implements Constraint<OcupacaoVariable, Hor
     public List<OcupacaoVariable> getScope() {
         var aux = new ArrayList<OcupacaoVariable>();
         aux.add(ocupacaoVariable);
-        aux.add(ocupacaoVariable);
         return aux;
     }
 
